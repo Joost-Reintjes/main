@@ -33,6 +33,7 @@ thrownDice = False
 # SETTINGS
 isPlaying = True
 notifications = True
+soundfx = True
 
 # TROOPS
 troopSelected = ''
@@ -809,15 +810,18 @@ def addPlayers():
             adding+=1
 
 def drawTooltip(title, message):
-    fill('#131a2a')
-    noStroke()
-    rect(460, 210, 1000, 200, 10)
-    textAlign(CENTER, CENTER)
-    textFont(font_kabel, 32)
-    fill('#ff363b')
-    text(title, 960, 260)
-    fill('#ffffff')
-    text(message, 960, 335)
+    
+    global notifications
+    if notifications == True: 
+     fill('#131a2a')
+     noStroke()
+     rect(460, 210, 1000, 200, 10)
+     textAlign(CENTER, CENTER)
+     textFont(font_kabel, 32)
+     fill('#ff363b')
+     text(title, 960, 260)
+     fill('#ffffff')
+     text(message, 960, 335)
 
 def drawInputEnterNames():
     global playerList, currentScreen
@@ -1247,6 +1251,7 @@ def drawStartMenu():
     textAlign(LEFT)
     text('VERSION 0.4.0', 20, 1060)
     
+## boxes on the rules page
 def  drawRulesboxes():
       image(img_round, 620, 300)
       image(img_round, 620, 460)
@@ -1257,23 +1262,8 @@ def  drawRulesboxes():
       image(img_round, 1010, 620)
       image(img_round, 1010, 780)
       image(img_round, 825, 930)
-
-def test():
-    fill(255)
-    rect(645, 317, 230, 70)
-    rect(645, 477, 230, 70)
-    rect(645, 637, 230, 70)
-    rect(645, 797, 230, 70)
-    
-    rect(1035, 317, 230, 70)
-    rect(1035, 477, 230, 70)
-    rect(1035, 637, 230, 70)
-    rect(1035, 797, 230, 70)
-    
-    rect(850, 950, 230, 70)
-    
-    
-
+      
+## text on the rules page
 def drawRulestext():
     textFont(font_kabel)
     fill('#1dc2ce')
@@ -1304,30 +1294,36 @@ def mousePressed():
     global troopSelected, selectedTroopPoints
     global currentRound, currentScreen, currentPlayer, activePlayers, enteredPlayers, currentEntering
     global player_list, currentScreen, number, current_round, lastScreen, gamer_names, shuffled, tooltips, thrownDice, amountGained, sf, isPlaying, playersAdded
-    global sfx
+    global sfx, notifications, soundfx
     ## MAIN MENU
     if currentScreen == 'MAIN-MENU':
         if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'EXIT'
         if mouseX > 630 and mouseX < 920 and mouseY > 535 and mouseY < 651:
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'INPUT-NAMES'
             lastScreen = 'MAIN-MENU'
         if mouseX > 1020 and mouseX < 1310 and mouseY > 535 and mouseY < 651:
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'SETTINGS'
             lastScreen = 'MAIN-MENU'
         if mouseX > 630 and mouseX < 920 and mouseY > 710 and mouseY < 826:
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'CREDITS'
             lastScreen = 'MAIN-MENU'
         if mouseX > 1020 and mouseX < 1310 and mouseY > 710 and mouseY < 826:
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'CONTACT'
             lastScreen = 'MAIN-MENU'
         if mouseX > 20 and mouseX < 164 and mouseY > 1035 and mouseY < 1065:
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen ='CHANGELOG'
             lastScreen = 'MAIN-MENU'
     
@@ -1339,80 +1335,98 @@ def mousePressed():
     ## INPUT NAMES
     if currentScreen == 'INPUT-NAMES':
         if mouseX > 0 and mouseX < 1920 and mouseY > 0 and mouseY < 1080:
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             tooltips['notEnoughPlayers'] = False
         if mouseX > 50 and mouseX < 254 and mouseY > 50 and mouseY < 137: # BACK BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'MAIN-MENU'
         if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137 and playersAdded >= 2: # NEXT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'SHUFFLE'
             currentEntering = 0
             lastScreen = 'INPUT-NAMES'
         if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137 and playersAdded < 2:
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             tooltips['notEnoughPlayers'] = True
         
         if mouseX > 810 and mouseX < 1460 and mouseY > 450 and mouseY < 525:
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentEntering = 1 
         if mouseX > 810 and mouseX < 1460 and mouseY > 550 and mouseY < 625:
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentEntering = 2
         if mouseX > 810 and mouseX < 1460 and mouseY > 650 and mouseY < 725:
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentEntering = 3
         if mouseX > 810 and mouseX < 1460 and mouseY > 750 and mouseY < 825:
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentEntering = 4
     
     if currentScreen == 'CONTACT':
         lastScreen = 'MAIN-MENU'
         if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = lastScreen
         if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'EXIT'
             lastScreen = 'CONTACT'
             
     if currentScreen == 'CHANGELOG':
         lastScreen = 'MAIN-MENU'
         if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = lastScreen
         if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'EXIT'
             lastScreen = 'CHANGELOG'
         
     if currentScreen == 'CREDITS':
         lastScreen = 'MAIN-MENU'
         if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = lastScreen
         if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'EXIT'
             lastScreen = 'CREDITS'
             
     ## SHUFFLE
     if currentScreen == 'SHUFFLE':
         if mouseX > 50 and mouseX < 254 and mouseY > 50 and mouseY < 137: # BACK BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'INPUT-NAMES'
             ## SHUFFLE
         if currentScreen == 'SHUFFLE':
             if mouseX > 50 and mouseX < 254 and mouseY > 50 and mouseY < 137 and shuffled == False: # BACK BUTTON
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 currentScreen = 'INPUT-NAMES'
             if mouseX > 460 and mouseX < 664 and mouseY > 875 and mouseY < 962: # SHUFFLE BUTTON
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 shuffled = True
                 gamer_names = drawPlayerList()
                 # drawDiceShuffle()
             if mouseX > 1260 and mouseX < 1464 and mouseY > 875 and mouseY < 962: # NEXT BUTTON
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 addPlayers()
                 currentScreen = 'MAIN' 
                 lastScreen = 'MAIN'
@@ -1421,7 +1435,8 @@ def mousePressed():
     ## MAIN SCREEN
     if currentScreen == 'MAIN':
         if mouseX > 1130 and mouseX < 1232 and mouseY > 675 and mouseY < 719:
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             if currentRound == 'POINTS' and thrownDice == False:
                 throwDicePoints()
                 thrownDice = True
@@ -1430,7 +1445,8 @@ def mousePressed():
                 thrownDice = True
         
         if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137 and thrownDice == True: # NEXT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             if players[currentPlayer]['points'] > 10:
                 players[currentPlayer]['points'] = 10
             
@@ -1463,38 +1479,48 @@ def mousePressed():
                         break
                 
         if mouseX > 58 and mouseX < 262 and mouseY > 655 and mouseY < 742 and currentRound == 'POINTS': # TROOPS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'TROOPS'
         if mouseX > 1649 and mouseX < 1853 and mouseY > 655 and mouseY < 742: # CARDS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'CARDS'
         if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'EXIT'
         if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
-           sfx.play()
-           currentScreen = 'SETTINGS2'
+             if soundfx == True: 
+                sfx.play()
+             currentScreen = 'SETTINGS2'
         if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'RULES'
         if mouseX > 325 and mouseX < 427 and mouseY > 955 and mouseY < 999: # PLAYER 1 CARDS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'PLAYER 1 CARDS'
         
         if mouseX > 785 and mouseX < 887 and mouseY > 955 and mouseY < 999: # PLAYER 2 CARDS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'PLAYER 2 CARDS'
         
         if mouseX > 1245 and mouseX < 1348 and mouseY > 955 and mouseY < 999: # PLAYER 3 CARDS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'PLAYER 3 CARDS'
         
         if mouseX > 1705 and mouseX < 1807 and mouseY > 955 and mouseY < 999: # PLAYER 4 CARDS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'PLAYER 4 CARDS'
        
         if mouseX > 336 and mouseX < 351 and mouseY > 915 and mouseY < 930: # PLAYER 1 MINUS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentHealth = players[1]['health']
             if players[1]['health'] != 0:
                 players[1]['health']-= 1
@@ -1527,12 +1553,14 @@ def mousePressed():
                         break
         
         if mouseX > 400 and mouseX < 415 and mouseY > 915 and mouseY < 930: # PLAYER 1 PLUS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             if players[1]['health'] != 3:
                 players[1]['health']+= 1
         
         if mouseX > 796 and mouseX < 811 and mouseY > 915 and mouseY < 930: # PLAYER 2 MINUS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentHealth = players[2]['health']
             if players[2]['health'] != 0:
                 players[2]['health']-= 1
@@ -1564,12 +1592,14 @@ def mousePressed():
                         break
         
         if mouseX > 860 and mouseX < 875 and mouseY > 915 and mouseY < 930: # PLAYER 2 PLUS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             if players[2]['health'] != 3:
                 players[2]['health']+= 1
         
         if mouseX > 1256 and mouseX < 1271 and mouseY > 915 and mouseY < 930: # PLAYER 3 MINUS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentHealth = players[3]['health']
             if players[3]['health'] != 0:
                 players[3]['health']-= 1
@@ -1601,12 +1631,14 @@ def mousePressed():
                         break
         
         if mouseX > 1320 and mouseX < 1335 and mouseY > 915 and mouseY < 930: # PLAYER 3 PLUS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             if players[3]['health'] != 3:
                 players[3]['health']+= 1
         
         if mouseX > 1716 and mouseX < 1731 and mouseY > 915 and mouseY < 930: # PLAYER 4 MINUS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentHealth = players[4]['health']
             if players[4]['health'] != 0:
                 players[4]['health']-= 1
@@ -1638,62 +1670,77 @@ def mousePressed():
                         break
         
         if mouseX > 1780 and mouseX < 1795 and mouseY > 915 and mouseY < 930: # PLAYER 4 PLUS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             if players[4]['health'] != 3:
                 players[4]['health']+= 1
             
     ## TROOP SCREEN
     elif currentScreen == 'TROOPS':
         if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'MAIN'
         if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'EXIT'
         if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'SETTINGS'
         if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'RULES'
         if mouseX > 281 and mouseX < 497 and mouseY > 227 and mouseY < 443: # BUY DRAGON BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             troopSelected = 'DRAGON'
             selectedTroopPoints = 10
         if mouseX > 570 and mouseX < 786 and mouseY > 227 and mouseY < 443: # BUY GOLEM BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             troopSelected = 'GOLEM'
             selectedTroopPoints = 8
         if mouseX > 858 and mouseX < 1074 and mouseY > 227 and mouseY < 443: # BUY WITCH BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             troopSelected = 'WITCH'
             selectedTroopPoints = 6
         if mouseX > 1146 and mouseX < 1362 and mouseY > 227 and mouseY < 443: # BUY WIZARD BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             troopSelected = 'WIZARD'
             selectedTroopPoints = 6
         if mouseX > 1425 and mouseX < 1641 and mouseY > 227 and mouseY < 443: # BUY GIANT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             troopSelected = 'GIANT'
             selectedTroopPoints = 6
         if mouseX > 420 and mouseX < 626 and mouseY > 584 and mouseY < 800: # BUY CANNON BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             troopSelected = 'CANNON'
             selectedTroopPoints = 4
         if mouseX > 709 and mouseX < 925 and mouseY > 584 and mouseY < 800: # BUY ARCHER BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             troopSelected = 'ARCHER'
             selectedTroopPoints = 4
         if mouseX > 997 and mouseX < 1213 and mouseY > 584 and mouseY < 800: # BUY DWARF BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             troopSelected = 'DWARF'
             selectedTroopPoints = 2
         if mouseX > 1285 and mouseX < 1501 and mouseY > 584 and mouseY < 800: # BUY SKELETON BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             troopSelected = 'SKELETON'
             selectedTroopPoints = 1
         if mouseX > 1135 and mouseX < 1237 and mouseY > 966 and mouseY < 1010: # BUY BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             if troopSelected != '' and players[currentPlayer]['points'] >= selectedTroopPoints:
                 players[currentPlayer]['points'] -= selectedTroopPoints
                 
@@ -1702,158 +1749,238 @@ def mousePressed():
     ## CARDS SCREEN
     elif currentScreen == 'CARDS':
         if mouseX > 1135 and mouseX < 1237 and mouseY > 966 and mouseY < 1010: # BUY BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             if players[currentPlayer]['points'] >= 10 and len(players[currentPlayer]['cards']) < 3:
                 players[currentPlayer]['points'] -= 10
                 buyCard()
         if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'MAIN'
         if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'EXIT'
         if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'SETTINGS'
         if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'RULES'
             
     ## EXIT SCREEN
     elif currentScreen == 'EXIT':
         if mouseX > 725 and mouseX < 929 and mouseY > 550 and mouseY < 637: # EXIT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             exit() 
         if mouseX > 975 and mouseX < 1179 and mouseY > 550 and mouseY < 637: # CANCEL BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = lastScreen 
     
     ## SETTINGS SCREEN
     elif currentScreen == 'SETTINGS':
         lastScreen = 'MAIN-MENU'
         if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = lastScreen
         if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'EXIT'
             lastScreen = 'SETTINGS'
-        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
-            sfx.play()
-            currentScreen = 'SETTINGS'
-        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
-            sfx.play()
-            currentScreen = 'RULES'
+            
         if mouseX >  950 and mouseX < 1154 and mouseY > 330 and mouseY < 417: #MUSIC ON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             if isPlaying == False:
                 sf.play()
                 isPlaying = True
         if mouseX > 1200 and mouseX < 1404 and mouseY > 330 and mouseY < 417: #MUSIC OFF
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             if isPlaying == True:
                 sf.stop()
                 isPlaying = False
         if mouseX > 950 and mouseX < 1154 and mouseY > 430 and mouseY < 517: #VOLUME LOW
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             sf.amp(0.3)
         if mouseX > 1200 and mouseX < 1404 and mouseY > 430 and mouseY < 517: #VOLUME MEDIUM
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             sf.amp(0.5)
         if mouseX > 1450 and mouseX < 1654 and mouseY > 430 and mouseY < 517: #VOLUME HIGH
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             sf.amp(1)
+        if mouseX > 950 and mouseX < 1154 and mouseY > 530 and mouseY < 617: #NOTIFICATIONS ON
+            if soundfx == True:
+                sfx.play()
+            if notifications == False:
+                notifications = True
+        
+        if mouseX > 1200 and mouseX < 1404 and mouseY > 530 and mouseY < 617: #NOTIFICATIONS OFF    
+            if soundfx == True:
+                sfx.play()
+            if notifications == True:
+                notifications = False
+                
+        if mouseX > 950 and mouseX < 1154 and mouseY > 630 and mouseY < 717: #SOUNDEFFECTS ON
+            if soundfx == True:
+                sfx.play()
+            if soundfx == False:
+                sfx.play()
+                soundfx = True
+        if mouseX > 1200 and mouseX < 1404 and mouseY > 630 and mouseY < 717: #SOUNDEFFECTS OFF
+            if soundfx == True:
+                sfx.play()
+            if soundfx == True:
+                sfx.stop()
+                soundfx = False
      
       
     elif currentScreen == 'SETTINGS2':
         lastScreen = 'MAIN'
         if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = lastScreen
         if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'EXIT'
             lastScreen = 'SETTINGS2'
         if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'SETTINGS2'
         if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'RULES'
         if mouseX >  950 and mouseX < 1154 and mouseY > 330 and mouseY < 417: #MUSIC ON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             if isPlaying == False:
                 sf.play()
                 isPlaying = True
         if mouseX > 1200 and mouseX < 1404 and mouseY > 330 and mouseY < 417: #MUSIC OFF
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             if isPlaying == True:
                 sf.stop()
                 isPlaying = False
         if mouseX > 950 and mouseX < 1154 and mouseY > 430 and mouseY < 517: #VOLUME LOW
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             sf.amp(0.3)
         if mouseX > 1200 and mouseX < 1404 and mouseY > 430 and mouseY < 517: #VOLUME MEDIUM
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             sf.amp(0.5)
         if mouseX > 1450 and mouseX < 1654 and mouseY > 430 and mouseY < 517: #VOLUME HIGH
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             sf.amp(1) 
         if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'RULES'
+        if mouseX > 950 and mouseX < 1154 and mouseY > 530 and mouseY < 617: #NOTIFICATIONS ON
+            if soundfx == True:
+                sfx.play()
+            if notifications == False:
+                notifications = True
+        
+        if mouseX > 1200 and mouseX < 1404 and mouseY > 530 and mouseY < 617: #NOTIFICATIONS OFF
+            if soundfx == True:
+                sfx.play()
+            if notifications == True:
+                notifications = False
+                
+        if mouseX > 950 and mouseX < 1154 and mouseY > 630 and mouseY < 717: #SOUNDEFFECTS ON
+            if soundfx == True:
+                sfx.play()
+            if soundfx == False:
+                sfx.play()
+                soundfx = True
+        if mouseX > 1200 and mouseX < 1404 and mouseY > 630 and mouseY < 717: #SOUNDEFFECTS OFF
+            if soundfx == True:
+                sfx.play()
+            if soundfx == True:
+                sfx.stop()
+                soundfx = False
         
     ## RULES SCREEN
     elif currentScreen == 'RULES':
         lastScreen = 'MAIN'
         if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = lastScreen
         if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'EXIT'
             lastScreen = 'RULES'
         if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'SETTINGS2'
             lastScreen = 'RULES'
         if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'RULES'
         if mouseX > 645 and mouseX < 875 and mouseY > 317 and mouseY < 377:
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'WINNING'
             lastScreen = 'RULES'
         if mouseX > 645 and mouseX < 875 and mouseY > 477 and mouseY < 547:
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'GAMEPLAY'
             lastScreen = 'RULES'
         if mouseX > 645 and mouseX < 875 and mouseY > 637 and mouseY < 707 :
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'ZONES'
             lastScreen = 'RULES'
         if mouseX > 645 and mouseX < 875 and mouseY > 797 and mouseY < 867 :
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'BUYING'
             lastScreen = 'RULES'
         if mouseX > 1035 and mouseX < 1265  and mouseY > 317 and mouseY < 377:
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'MOVING'
             lastScreen = 'RULES'
         if mouseX > 1035 and mouseX < 1265 and mouseY > 477 and mouseY < 547:
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'ATTACKING'
             lastScreen = 'RULES'
         if mouseX > 1035 and mouseX < 1265 and mouseY > 637 and mouseY < 707 :
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'CARDS-R'
             lastScreen = 'RULES'
         if mouseX > 1035 and mouseX < 1265 and mouseY > 797 and mouseY < 867 :
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'TROOPS-R'
             lastScreen = 'RULES'
         if mouseX > 850 and mouseX < 1080 and mouseY > 950 and mouseY < 1020 :
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'FAQ'
             lastScreen = 'RULES'
         
@@ -1861,160 +1988,200 @@ def mousePressed():
     ## PLAYER 1 CARDS SCREEN
     elif currentScreen == 'PLAYER 1 CARDS':
         if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'MAIN'
         if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'EXIT'
         if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'SETTINGS'
         if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'RULES'
         
         totalCards1 = len(players[1]['cards'])    
         if totalCards1 > 2:
             if mouseX > 512 and mouseX < 716 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(1,0)
             if mouseX > 858 and mouseX < 1062 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(1,1)
             if mouseX > 1205 and mouseX < 1409 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(1,2)
         
         elif totalCards1 > 1:
             if mouseX > 685 and mouseX < 889 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(1,0)
             if mouseX > 1030 and mouseX < 1234 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(1,1)
         
         elif totalCards1 > 0:
             if mouseX > 858 and mouseX < 1062 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(1,0)
     ## PLAYER 2 CARDS SCREEN
     elif currentScreen == 'PLAYER 2 CARDS':
         if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'MAIN'
         if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'EXIT'
         if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'SETTINGS'
         if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'RULES'
             
         totalCards2 = len(players[2]['cards'])    
         if totalCards2 > 2:
             if mouseX > 512 and mouseX < 716 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(2,0)
             if mouseX > 858 and mouseX < 1062 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(2,1)
             if mouseX > 1205 and mouseX < 1409 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(2,2)
         
         elif totalCards2 > 1:
             if mouseX > 685 and mouseX < 889 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(2,0)
             if mouseX > 1030 and mouseX < 1234 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(2,1)
         
         elif totalCards2 > 0:
             if mouseX > 858 and mouseX < 1062 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(2,0)
     
     ## PLAYER 3 CARDS SCREEN
     elif currentScreen == 'PLAYER 3 CARDS':
         if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'MAIN'
         if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'EXIT'
         if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'SETTINGS'
         if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'RULES'
             
         totalCards3 = len(players[3]['cards'])    
         if totalCards3 > 2:
             if mouseX > 512 and mouseX < 716 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(3,0)
             if mouseX > 858 and mouseX < 1062 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(3,1)
             if mouseX > 1205 and mouseX < 1409 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(3,2)
         
         elif totalCards3 > 1:
             if mouseX > 685 and mouseX < 889 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(3,0)
             if mouseX > 1030 and mouseX < 1234 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(3,1)
         
         elif totalCards3 > 0:
             if mouseX > 858 and mouseX < 1062 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(3,0)
     
     ## PLAYER 4 CARDS SCREEN
     elif currentScreen == 'PLAYER 4 CARDS':
         if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'MAIN'
         if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'EXIT'
         if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'SETTINGS'
         if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
-            sfx.play()
+            if soundfx == True: 
+                sfx.play()
             currentScreen = 'RULES'
             
         totalCards4 = len(players[4]['cards'])    
         if totalCards4 > 2:
             if mouseX > 512 and mouseX < 716 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(4,0)
             if mouseX > 858 and mouseX < 1062 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(4,1)
             if mouseX > 1205 and mouseX < 1409 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(4,2)
         
         elif totalCards4 > 1:
             if mouseX > 685 and mouseX < 889 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(4,0)
             if mouseX > 1030 and mouseX < 1234 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(4,1)
         
         elif totalCards4 > 0:
             if mouseX > 858 and mouseX < 1062 and mouseY > 760 and mouseY < 847:
-                sfx.play()
+                if soundfx == True: 
+                    sfx.play()
                 checkCard(4,0)
             
     
