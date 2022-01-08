@@ -151,6 +151,11 @@ def setup():
     dice_5 = loadImage('dice_5.png')
     dice_6 = loadImage('dice_6.png')
     
+    #boards
+    global board_b, board_n
+    board_b = loadImage('boardblack.png')
+    board_n = loadImage('board.png')
+    
     ## CARDS
     global img_all_cards, img_btn_buy, img_btn_buy_small
     img_all_cards = loadImage('all_cards.png')
@@ -649,6 +654,9 @@ def drawAllCards():
     textAlign(LEFT)
     textFont(font_kabel, 24)
     text('TO PURCHASE A RANDOM CARD, CLICK ON THE\nBUY BUTTON AT THE BOTTOM OF THE SCREEN', 50, 980)
+    
+def drawAllCards2():
+    image(img_all_cards, 50, 270)
 
 def drawUseButton(x,y):
     image(img_btn_use, x, y, 204, 87)
@@ -923,6 +931,254 @@ def changeCursor():
     global img_cursor
     cursor(img_cursor)
     
+def drawTextFaq1():
+    fill('#1dc2ce')
+    textFont(font_kabel)
+    textSize(47)
+    textAlign(LEFT)
+    text('What should I do when I am getting attacked?', 80, 290)
+    fill(255)
+    textSize(37)
+    textAlign(LEFT)
+    text( 'When you are getting attacked you should probably try to defend your tower\nas soon as you can. You can do this by fighting the enemy troops inside your\nsafezone with the troops you have or placing new ones first. If your entire\nspawn zone is covered with troops you are not able to place new troops.\nYou could try using playing cards to get out of this situation.', 90, 340)
+
+def drawTextFaq2():
+    fill('#1dc2ce')
+    textFont(font_kabel)
+    textSize(47)
+    textAlign(LEFT)
+    text('What happens when you attack a troop with the same level?', 80, 290)
+    fill(255)
+    textSize(37)
+    textAlign(LEFT)
+    text('Usually the troop with the highest level wins. If the troops are the same level,\nthe attacking player wins the fight. Some troops always win against other troops\nwhich means you could lose the fight. Take a look at the info card to know which\ntroops beat which. Example 1: Player 1 uses a golem(8) to attack a dwarf(2) from\nPlayer 2. Player 1 wins the fight and the dwarf is removed from the board.\nExample 2: Player 1 uses a wizard(6) to attack a dragon(10) from Player 2.\nPlayer 1 wins the fight because a wizard always wins against a dragon.\nExample 3: Player 1 uses a wizard(6) to attack an archer(4) from Player 2.\nPlayer 2 wins the fight because an archer always wins against a wizard.',90,340)
+    
+def drawTextFaq3():
+    fill('#1dc2ce')
+    textFont(font_kabel)
+    textSize(47)
+    textAlign(LEFT)
+    text('Can I move multiple troops per round in round 2?', 80, 290)
+    fill(255)
+    textSize(37)
+    textAlign(LEFT)
+    text('Yes you can use the steps you gained by rolling the four eyed dice until you have used\nthem all. You can use them on as many troops as you would like.  ',90, 340)
+    
+def drawTextFaq4():
+    fill('#1dc2ce')
+    textFont(font_kabel)
+    textSize(47)
+    textAlign(LEFT)
+    text('Can I move my troops backwards?', 80, 290)
+    fill(255)
+    textSize(37)
+    textAlign(LEFT)
+    text('Yes you can move your troops to any side you want, unless you are moving back into\nthe safezone. Moving back into the safezone is not allowed except when you are attacking\nan enemytroop inside it.',90,340)
+
+def drawTextFaq5():
+    fill('#1dc2ce')
+    textFont(font_kabel)
+    textSize(47)
+    textAlign(LEFT)
+    text('Can I undo a move?', 80, 290)
+    fill(255)
+    textSize(37)
+    textAlign(LEFT)
+    text('As long as it is still your turn you can undo any moves you did. You cannot undo an attack.',90, 340)
+    
+    
+def drawTextFaq6():
+    fill('#1dc2ce')
+    textFont(font_kabel)
+    textSize(47)
+    textAlign(LEFT)
+    text('Can you move all troops or just one after throwing the four-eyed dice?', 80, 290)
+    fill(255)
+    textSize(37)
+    textAlign(LEFT)
+    text('The amount of eyes you rolled is the total steps you can do per round. You can spread\nthem on multiple troops or use them all on one. Example 1: You roll four eyes. You move\nyour dwarf 2 steps forward and your golem 2 steps forward as well. Your turn is now over.\nExample 2: You rolled three eyes. You move your dragon 2 steps forward, you attack an\nenemytroop. Your turn is now over. Example 3: You rolled two eyes. You move your golem\n1 step forward, you are now in front of your opponent’s tower. You attack the tower.\nYour turn is now over.',90,340)
+    
+def drawTextFaq7():
+    fill('#1dc2ce')
+    textFont(font_kabel)
+    textSize(47)
+    textAlign(LEFT)
+    text('I used my playing card. Can I re-use it?', 80, 290)
+    fill(255)
+    textSize(37)
+    textAlign(LEFT)
+    text('No you can not re-use a playing card. After using a playing card you need to put it back\non the pile of cards and shuffle them.',90,340)
+
+def drawTextWinning():
+    fill('#1dc2ce')
+    textFont(font_kabel)
+    textSize(47)
+    textAlign(LEFT)
+    text('Win condition', 80, 290)
+    fill(255)
+    textSize(37)
+    textAlign(LEFT)
+    text('The game is played with two to four players. If your tower loses its total health points (HP)\nyour tower will be destroyed and you are out of the game. The last player standing wins.\nIt is advised to play and work together to destroy a tower. Moving towards one tower with\nthree players has a lot of benefits for the pace of the game but beware of betrayal!\nWorking together is obviously not possible when the game is played with only two players.', 90, 340)
+
+def drawTextGameplay():
+    fill('#1dc2ce')
+    textFont(font_kabel)
+    textSize(50)
+    text('Start', 130 ,270)
+    fill(255)
+    textSize(34)
+    textAlign(LEFT)
+    text('Once the board has been set up and the initial troops have been bought you can start playing the game.\nTo decide who starts, all players roll the dice. The person with the highest number of points can start.', 80, 315)
+    textSize(38)
+    text('The game consists of two rounds:', 80, 430)
+    fill('#1dc2ce')
+    textSize(44)
+    text('Round 1', 80, 510)
+    fill(255)
+    textSize(34)
+    text('All players have turns on rolling the dice and spending points on troops or playing cards.\nUse the two dice with a maximum of six eyes. The price of each troop is equal to its level.\nFor example: You roll a three and a five combined on the two dice. You gained 8 points and\nare able to buy a golem or two cannons. You can also save up your points if you wish!\nThe maximum you can save up is 10 points.', 90, 555)
+    fill('#1dc2ce')
+    textSize(44)
+    text('Round 2', 80, 810)
+    fill(255)
+    textSize(34)
+    text('All players have turns on rolling the dice and moving their troops to a location or attacking other people.\nUse the one dice with maximum of four eyes Repeat these two rounds after each other until the game is over.', 90, 855)
+
+def drawTextZones():
+    fill('#1dc2ce')
+    textAlign(LEFT)
+    textFont(font_kabel)
+    textSize(45)
+    text('Spawn zone', 80, 245)
+    textSize(34)
+    fill(255)
+    text('The four boxes in front of your tower are your spawn zone in which\nyou can place your troops. If you want to place more troops, you have\nto move them out of your spawn zone first. If another player attacks your\ntower they deal 1 damage. The troop which just attacked your tower will\nreturn to the position it attacked from. This means that it will stay inside\nthe spawn zone!If your spawn zone is completely covered with troops you\ncan not place any new ones.',90, 290)
+    fill('#1dc2ce')
+    textSize(45)
+    text('Safe zone', 80, 650)
+    fill(255)
+    textSize(34)
+    text('The safezone consists of the eight boxes right next to your spawn zone.\nIf you move a troop out of this zone you cannot move it back in afterwards.', 90, 695)
+
+def drawTextBuying():
+    fill('#1dc2ce')
+    textAlign(LEFT)
+    textFont(font_kabel)
+    textSize(45)
+    text('Acquiring troops', 80, 275)
+    textSize(34)
+    fill(255)
+    text('Troops are acquired by buying them in round one. The cost of each troop is equal to its level.\nCan you not remember the numbers? Take a look at the info card provided in the box. You can place\na maximum of two troops of every type. Using a playing card to steal a troop allows you to exceed\nthis maximum. Use your troops to attack other other troops and get closer to their tower. Attacking\nthe tower also costs one step.You can attack multiple troops in one round and use the same one each\ntime until you are out of steps.', 90, 320)
+
+def drawTextMoving():
+    fill('#1dc2ce')
+    textAlign(LEFT)
+    textFont(font_kabel)
+    textSize(45)
+    text('Moving your troops', 80, 275)
+    textSize(34)
+    fill(255)
+    text('After rolling the four eyed dice in round two you can move your troops according to the amount\nof eyes you rolled. You can use them all on one troop or split them up between others.\nAfter moving your troops outside of your safezone you can’t move them back in unless you need\nto attack another player inside your safezone. In case you need to attack another player inside your\nsafezone the other troop should be in the safezone and not in the spawn zone. Use your troops inside\nthe safezone to defend your tower or place new ones if you are all out. It is allowed to move sideways\nand oblique.', 90, 320)
+
+def drawTextAttacking():
+    fill('#1dc2ce')
+    textAlign(LEFT)
+    textFont(font_kabel)
+    textSize(45)
+    text('Attacking', 80, 275)
+    textSize(34)
+    fill(255)
+    text('To attack a troop you need to use your steps to get to the box it is standing on.\nThe troop with the highest level wins unless stated otherwise on the info card.\nSome troops always win against other troops regardless of their level After\nattacking a troop you are allowed to use your remaining steps to attack another\ntroop, relocate or attack a tower. You can attack multiple troops in one round\nand use the same one each time until you are out of steps. It is allowed to attack\nsideways and oblique.', 90 ,320)
+
+def drawTextCards():
+    fill('#1dc2ce')
+    textAlign(LEFT)
+    textFont(font_kabel)
+    textSize(45)
+    text('Playing cards', 80, 275)
+    textSize(34)
+    fill(255)
+    text('You can only use the playing cards in round two. Please use the playing cards with common sense.\nWhen using a card that lets a player skip a turn, use this when it is actually their turn and not when\nsomeone else is still playing to avoid confusion. If you want to steal or swap a card you can only do\nthat on your turn. Using playing cards which have an impact on your troops or those of another player\ncan only be used on your turn. These cards also allow you to exceed the maximum amount of troops you\ncan have of one type. The maximum amount of cards you can have at a time is 3.', 90, 320)
+    text('For an overview of all available cards, please click HERE', 90, 800)
+
+def drawTextTroops(): 
+    fill('#1dc2ce')
+    textAlign(LEFT)
+    textSize(40)
+    text('Name            Level            Always wins against (vs.)\n\n', 100, 300)
+    fill(255)
+    text('\n\nDragon            10\nGolem               8\nWitch                6\nWizard              6            Dragon\nGiant                 6            Witch and Skeleton (area effect)\nCannon             4            Golem\nArcher               4            Wizard\nDwarf                2\nSkeleton            1', 100, 300)
+    fill('#1dc2ce')
+    textSize(45)
+    text('Witch', 1520, 280)
+    fill(255)
+    textSize(30)
+    text('You can only buy skeletons if you have a\nwitch on the board. Always place the\nskeletons in front of the witch. You can\nmove the skeletons together with the\nwitch without spending any additional\nrelocation points. If the witch dies, the\nskeletons all die as well. You need to kill all\nskeletons besides the Witch before you\ncan attack the Witch', 1270, 330)
+    fill('#1dc2ce')
+    textSize(45)
+    text('Giant', 1540, 700)
+    fill(255)
+    textSize(30)
+    text('The giant has an area of effect against\nskeletons. If a giant attacks a skeleton,\nall skeletons within a 3x3 radius will die\nas well.',1270, 750)
+    
+def cardhover():
+    if currentScreen == 'CARDS-R':
+     if mouseX > 896 and mouseX < 979 and mouseY > 775  and mouseY < 802: 
+      fill(255)
+      rect(896, 805, 83, 4)
+      
+        
+        
+def hover1():
+    if currentScreen == 'FAQ':
+        if mouseX > 467 and mouseX < 1449 and mouseY > 245 and mouseY < 290:
+            fill(255)
+            rect(467, 297, 982, 7)
+        
+def hover2():
+    if currentScreen == 'FAQ':
+        if mouseX > 318 and mouseX < 1598 and mouseY > 357 and mouseY < 402:
+            fill(255)
+            rect(318, 409, 1280, 7)
+        
+def hover3():
+    if currentScreen == 'FAQ':
+        if mouseX > 433 and mouseX < 1485 and mouseY > 470 and mouseY < 515:
+            fill(255)
+            rect(433, 522, 1052, 7)
+        
+def hover4():
+    if currentScreen == 'FAQ':
+        if mouseX > 598 and mouseX < 1320 and mouseY > 582 and mouseY < 627:
+            fill(255)
+            rect(598, 634, 722, 7)
+        
+def hover5():
+    if currentScreen == 'FAQ':
+        if mouseX > 752 and mouseX < 1166 and mouseY > 694 and mouseY < 739:
+            fill(255)
+            rect(752, 746, 414, 7)
+      
+def hover6():
+    if currentScreen == 'FAQ':
+        if mouseX > 210 and mouseX < 1709 and mouseY > 806 and mouseY < 851:
+         fill(255)
+         rect(210, 858, 1499, 7)
+      
+def hover7():
+    if currentScreen == 'FAQ':
+        if mouseX > 552 and mouseX < 1369 and mouseY > 918 and mouseY < 963:
+            fill(255)
+            rect(552, 970, 817, 7)
+        
+
+def drawTextFaq():
+    fill(255)
+    textSize(45)
+    text('What should I do when I am getting attacked?\n\nWhat happens when you attack a troop with the same level?\n\nCan I move multiple troops per round in round 2?\n\nCan I move my troops backwards?\n\nCan I undo a move?\n\nCan you move all troops or just one after throwing the four-eyed dice?\n\nI used my playing card. Can I re-use it?', 960, 280)
+
+    
+    
 def changeloghover():
     if currentScreen == 'MAIN-MENU':
         if mouseX > 20 and mouseX < 164 and mouseY > 1035 and mouseY < 1065:
@@ -956,52 +1212,52 @@ def changeloghover():
 def ruleshover():
     if currentScreen == 'RULES':
     
-     if mouseX > 645 and mouseX < 875 and mouseY > 317 and mouseY < 377:
+     if mouseX > 645 and mouseX < 875 and mouseY > 267 and mouseY < 327:
             textFont(font_kabel)
             fill(255)
             textSize(35)
-            text('WINNING', 765, 368)
-     if mouseX > 645 and mouseX < 875 and mouseY > 477 and mouseY < 547:
+            text('WINNING', 765, 318)
+     if mouseX > 645 and mouseX < 875 and mouseY > 427 and mouseY < 497:
             textFont(font_kabel)
             fill(255)
             textSize(34)
-            text('GAMEPLAY', 765, 528)
-     if mouseX > 645 and mouseX < 875 and mouseY > 637 and mouseY < 707 :
+            text('GAMEPLAY', 765, 478)
+     if mouseX > 645 and mouseX < 875 and mouseY > 587 and mouseY < 657 :
         textFont(font_kabel)
         fill(255)
         textSize(37)
-        text('ZONES', 765, 688)
-     if mouseX > 645 and mouseX < 875 and mouseY > 797 and mouseY < 867 :
+        text('ZONES', 765, 638)
+     if mouseX > 645 and mouseX < 875 and mouseY > 747 and mouseY < 817 :
        textFont(font_kabel)
        fill(255)
        textSize(35)
-       text('BUYING', 765, 848)
-     if mouseX > 1035 and mouseX < 1265  and mouseY > 317 and mouseY < 377:
+       text('BUYING', 765, 798)
+     if mouseX > 1035 and mouseX < 1265  and mouseY > 267 and mouseY < 327:
         textFont(font_kabel)
         fill(255)
         textSize(37)
-        text('MOVING ', 1160, 368)
-     if mouseX > 1035 and mouseX < 1265 and mouseY > 477 and mouseY < 547:
+        text('MOVING ', 1160, 318)
+     if mouseX > 1035 and mouseX < 1265 and mouseY > 427 and mouseY < 497:
          textFont(font_kabel)
          fill(255)
          textSize(34)
-         text('ATTACKING', 1155, 528)
-     if mouseX > 1035 and mouseX < 1265 and mouseY > 637 and mouseY < 707 :
+         text('ATTACKING', 1155, 478)
+     if mouseX > 1035 and mouseX < 1265 and mouseY > 577 and mouseY < 657 :
             textFont(font_kabel)
             fill(255)
             textSize(37)
-            text('CARDS', 1155, 688)
-     if mouseX > 1035 and mouseX < 1265 and mouseY > 797 and mouseY < 867 :
+            text('CARDS', 1155, 638)
+     if mouseX > 1035 and mouseX < 1265 and mouseY > 747 and mouseY < 817 :
             textFont(font_kabel)
             fill(255)
             textSize(37)
-            text('TROOPS', 1155, 848)
-           
-     if mouseX > 850 and mouseX < 1080 and mouseY > 950 and mouseY < 1020 :
+            text('TROOPS', 1155, 798)
+    
+    if mouseX > 850 and mouseX < 1080 and mouseY > 900 and mouseY < 970 :
             textFont(font_kabel)
             fill(255)
-            textSize(43)
-            text('FAQ', 965, 1000)
+            textSize(43)    
+            text('FAQ', 965, 950)
             
 def drawPlayerCards():
     if players[1]['isDead'] == False:
@@ -1253,15 +1509,15 @@ def drawStartMenu():
     
 ## boxes on the rules page
 def  drawRulesboxes():
-      image(img_round, 620, 300)
-      image(img_round, 620, 460)
-      image(img_round, 620, 620)
-      image(img_round, 620, 780)
-      image(img_round, 1010, 300)
-      image(img_round, 1010, 460)
-      image(img_round, 1010, 620)
-      image(img_round, 1010, 780)
-      image(img_round, 825, 930)
+      image(img_round, 620, 250)
+      image(img_round, 620, 410)
+      image(img_round, 620, 570)
+      image(img_round, 620, 730)
+      image(img_round, 1010, 250)
+      image(img_round, 1010, 410)
+      image(img_round, 1010, 570)
+      image(img_round, 1010, 730)
+      image(img_round, 825, 880)
       
 ## text on the rules page
 def drawRulestext():
@@ -1269,22 +1525,22 @@ def drawRulestext():
     fill('#1dc2ce')
     textSize(35)
     textAlign(CENTER)
-    text('WINNING', 765, 368)
+    text('WINNING', 765, 318)
     textSize(34)
-    text('GAMEPLAY', 765, 528)
+    text('GAMEPLAY', 765, 478)
     textSize(37)
-    text('ZONES', 765, 688)
+    text('ZONES', 765, 638)
     textSize(35)
-    text('BUYING', 765, 848)
+    text('BUYING', 765, 798)
     textSize(37)
-    text('MOVING ', 1160, 368)
+    text('MOVING ', 1160, 318)
     textSize(34)
-    text('ATTACKING', 1155, 528)
+    text('ATTACKING', 1155, 478)
     textSize(37)
-    text('CARDS', 1155, 688)
-    text('TROOPS', 1155, 848)
+    text('CARDS', 1155, 638)
+    text('TROOPS', 1155, 798)
     textSize(43)
-    text('FAQ', 965, 1000)
+    text('FAQ', 965, 950)
     
 
 ## BUTTONS
@@ -1304,7 +1560,7 @@ def mousePressed():
         if mouseX > 630 and mouseX < 920 and mouseY > 535 and mouseY < 651:
             if soundfx == True: 
                 sfx.play()
-            currentScreen = 'INPUT-NAMES'
+            currentScreen = 'FAQ'
             lastScreen = 'MAIN-MENU'
         if mouseX > 1020 and mouseX < 1310 and mouseY > 535 and mouseY < 651:
             if soundfx == True: 
@@ -1331,7 +1587,7 @@ def mousePressed():
     for i in range(0, len(gamer_names)):
         if gamer_names[i] != '':
             playersAdded+=1
-    
+            
     ## INPUT NAMES
     if currentScreen == 'INPUT-NAMES':
         if mouseX > 0 and mouseX < 1920 and mouseY > 0 and mouseY < 1080:
@@ -1938,52 +2194,438 @@ def mousePressed():
             if soundfx == True: 
                 sfx.play()
             currentScreen = 'RULES'
-        if mouseX > 645 and mouseX < 875 and mouseY > 317 and mouseY < 377:
+        if mouseX > 645 and mouseX < 875 and mouseY > 267 and mouseY < 327:
             if soundfx == True: 
                 sfx.play()
             currentScreen = 'WINNING'
             lastScreen = 'RULES'
-        if mouseX > 645 and mouseX < 875 and mouseY > 477 and mouseY < 547:
+        if mouseX > 645 and mouseX < 875 and mouseY > 427 and mouseY < 497:
             if soundfx == True: 
                 sfx.play()
             currentScreen = 'GAMEPLAY'
             lastScreen = 'RULES'
-        if mouseX > 645 and mouseX < 875 and mouseY > 637 and mouseY < 707 :
+        if mouseX > 645 and mouseX < 875 and mouseY > 587 and mouseY < 657 :
             if soundfx == True: 
                 sfx.play()
             currentScreen = 'ZONES'
             lastScreen = 'RULES'
-        if mouseX > 645 and mouseX < 875 and mouseY > 797 and mouseY < 867 :
+        if mouseX > 645 and mouseX < 875 and mouseY > 747 and mouseY < 817 :
             if soundfx == True: 
                 sfx.play()
             currentScreen = 'BUYING'
             lastScreen = 'RULES'
-        if mouseX > 1035 and mouseX < 1265  and mouseY > 317 and mouseY < 377:
+        if mouseX > 1035 and mouseX < 1265  and mouseY > 267 and mouseY < 327:
             if soundfx == True: 
                 sfx.play()
             currentScreen = 'MOVING'
             lastScreen = 'RULES'
-        if mouseX > 1035 and mouseX < 1265 and mouseY > 477 and mouseY < 547:
+        if mouseX > 1035 and mouseX < 1265 and mouseY > 427 and mouseY < 497:
             if soundfx == True: 
                 sfx.play()
             currentScreen = 'ATTACKING'
             lastScreen = 'RULES'
-        if mouseX > 1035 and mouseX < 1265 and mouseY > 637 and mouseY < 707 :
+        if mouseX > 1035 and mouseX < 1265 and mouseY > 587 and mouseY < 657 :
             if soundfx == True: 
                 sfx.play()
             currentScreen = 'CARDS-R'
             lastScreen = 'RULES'
-        if mouseX > 1035 and mouseX < 1265 and mouseY > 797 and mouseY < 867 :
+        if mouseX > 1035 and mouseX < 1265 and mouseY > 747 and mouseY < 817 :
             if soundfx == True: 
                 sfx.play()
             currentScreen = 'TROOPS-R'
             lastScreen = 'RULES'
-        if mouseX > 850 and mouseX < 1080 and mouseY > 950 and mouseY < 1020 :
+        if mouseX > 850 and mouseX < 1080 and mouseY > 900 and mouseY < 970 :
             if soundfx == True: 
                 sfx.play()
             currentScreen = 'FAQ'
             lastScreen = 'RULES'
+            
+            
+    elif currentScreen == 'OVERVIEW':
+        lastScreen = 'CARDS-R'
+        if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'CARDS-R'
+        if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'EXIT'
+            lastScreen = 'OVERVIEW'
+        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'SETTINGS2'
+        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+            
+    elif currentScreen == 'WINNING':
+        lastScreen = 'MAIN'
+        if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+        if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'EXIT'
+            lastScreen = 'WINNING'
+        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'SETTINGS2'
+        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+            
+    elif currentScreen == 'GAMEPLAY':
+        lastScreen = 'MAIN'
+        if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+        if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'EXIT'
+            lastScreen = 'GAMEPLAY'
+        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'SETTINGS2'
+        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+            
+    elif currentScreen == 'ZONES':
+        lastScreen = 'MAIN'
+        if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+        if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'EXIT'
+            lastScreen = 'ZONES'
+        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'SETTINGS2'
+        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+            
+    elif currentScreen == 'BUYING':
+        lastScreen = 'MAIN'
+        if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+        if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'EXIT'
+            lastScreen = 'BUYING'
+        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'SETTINGS2'
+        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+            
+    elif currentScreen == 'MOVING':
+        lastScreen = 'MAIN'
+        if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+        if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'EXIT'
+            lastScreen = 'MOVING'
+        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'SETTINGS2'
+        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+            
         
+    elif currentScreen == 'ATTACKING':
+        lastScreen = 'MAIN'
+        if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+        if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'EXIT'
+            lastScreen = 'ATTACKING'
+        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'SETTINGS2'
+        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+            
+    elif currentScreen == 'CARDS-R':
+        lastScreen = 'MAIN'
+        if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+        if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'EXIT'
+            lastScreen = 'CARDS-R'
+        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'SETTINGS2'
+        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+        if mouseX > 896 and mouseX < 979 and mouseY > 775 and mouseY < 801:
+            if soundfx == True: 
+                sfx.play()
+            currentScreen ='OVERVIEW'
+    
+            
+    elif currentScreen == 'TROOPS-R':
+        lastScreen = 'MAIN'
+        if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+        if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'EXIT'
+            lastScreen = 'TROOPS-R'
+        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'SETTINGS2'
+        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+            
+    elif currentScreen == 'FAQ':
+        lastScreen = 'MAIN'
+        if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+        if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'EXIT'
+            lastScreen = 'FAQ'
+        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'SETTINGS2'
+        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+            ####
+        if mouseX > 467 and mouseX < 1449 and mouseY > 245 and mouseY < 290:
+          if soundfx == True: 
+                sfx.play()
+          currentScreen = 'FAQ1'
+          lastScreen = 'FAQ'
+        if mouseX > 318 and mouseX < 1598 and mouseY > 357 and mouseY < 402:
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'FAQ2'
+            lastScreen = 'FAQ'
+        if mouseX > 433 and mouseX < 1485 and mouseY > 470 and mouseY < 515:
+             if soundfx == True: 
+                sfx.play()
+             currentScreen = 'FAQ3'
+             lastScreen = 'FAQ'
+        if mouseX > 598 and mouseX < 1320 and mouseY > 582 and mouseY < 627: 
+             if soundfx == True: 
+                sfx.play()
+             currentScreen = 'FAQ4'
+             lastScreen = 'FAQ' 
+        if mouseX > 752 and mouseX < 1166 and mouseY > 694 and mouseY < 739:  
+             if soundfx == True: 
+                sfx.play()
+             currentScreen = 'FAQ5'
+             lastScreen = 'FAQ'  
+        if mouseX > 210 and mouseX < 1709 and mouseY > 806 and mouseY < 851:
+             if soundfx == True: 
+                sfx.play()
+             currentScreen = 'FAQ6'
+             lastScreen = 'FAQ'
+        if mouseX > 552 and mouseX < 1369 and mouseY > 918 and mouseY < 963:
+             if soundfx == True: 
+                sfx.play()
+             currentScreen = 'FAQ7'
+             lastScreen = 'FAQ'
+            
+            
+    elif currentScreen == 'FAQ1':
+        lastScreen = 'FAQ'
+        if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'FAQ'
+        if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'EXIT'
+            lastScreen = 'FAQ1'
+        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'SETTINGS2'
+        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+            
+            
+    elif currentScreen == 'FAQ2':
+        lastScreen = 'FAQ'
+        if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'FAQ'
+        if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'EXIT'
+            lastScreen = 'FAQ2'
+        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'SETTINGS2'
+        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+            
+    elif currentScreen == 'FAQ3':
+        lastScreen = 'FAQ'
+        if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'FAQ'
+        if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'EXIT'
+            lastScreen = 'FAQ3'
+        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'SETTINGS2'
+        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+            
+    elif currentScreen == 'FAQ4':
+        lastScreen = 'FAQ'
+        if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'FAQ'
+        if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'EXIT'
+            lastScreen = 'FAQ4'
+        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'SETTINGS2'
+        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+            
+            
+    elif currentScreen == 'FAQ5':
+        lastScreen = 'FAQ'
+        if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'FAQ'
+        if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'EXIT'
+            lastScreen = 'FAQ5'
+        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'SETTINGS2'
+        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+            
+    elif currentScreen == 'FAQ6':
+        lastScreen = 'FAQ'
+        if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'FAQ'
+        if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'EXIT'
+            lastScreen = 'FAQ6'
+        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'SETTINGS2'
+        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+            
+    elif currentScreen == 'FAQ7':
+        lastScreen = 'FAQ'
+        if mouseX > 1666 and mouseX < 1870 and mouseY > 50 and mouseY < 137: # BACK BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'FAQ'
+        if mouseX > 50 and mouseX < 142 and mouseY > 50 and mouseY < 151: # EXIT BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'EXIT'
+            lastScreen = 'FAQ7'
+        if mouseX > 167 and mouseX < 259 and mouseY > 50 and mouseY < 151: # SETTINGS BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'SETTINGS2'
+        if mouseX > 284 and mouseX < 376 and mouseY > 50 and mouseY < 151: # RULES BUTTON
+            if soundfx == True: 
+                sfx.play()
+            currentScreen = 'RULES'
+    
             
     ## PLAYER 1 CARDS SCREEN
     elif currentScreen == 'PLAYER 1 CARDS':
@@ -2212,7 +2854,11 @@ def keyPressed():
         if key == BACKSPACE:
             gamer_names[currentEntering-1] = gamer_names[currentEntering-1][:-1]
         if key == DELETE:
-            gamer_names[currentEntering-1] = ''           
+            gamer_names[currentEntering-1] = ''  
+
+def drawboards():
+    image(board_b, 1400, 600, 384, 384)
+    image(board_n, 1400, 200, 384, 384)  
       
 ## DRAW SCREENS
 def draw():
@@ -2411,27 +3057,133 @@ def draw():
         
     elif currentScreen == 'WINNING':
         drawBackground()
+        drawLeftMenu(img_exit, img_settings, img_rules)
+        drawBackButton()
+        drawRound('WINNING')
+        drawTextWinning()
+
         
     elif currentScreen == 'GAMEPLAY':
         drawBackground()
+        drawLeftMenu(img_exit, img_settings, img_rules)
+        drawBackButton()
+        drawRound('GAMEPLAY')
+        drawTextGameplay()
         
     elif currentScreen == 'ZONES':
         drawBackground()
+        drawLeftMenu(img_exit, img_settings, img_rules)
+        drawBackButton()
+        drawRound('ZONES')
+        drawboards()
+        drawTextZones()
         
     elif currentScreen == 'BUYING':
         drawBackground()
+        drawLeftMenu(img_exit, img_settings, img_rules)
+        drawBackButton()
+        drawRound('BUYING')
+        drawTextBuying()
         
     elif currentScreen == 'MOVING':
         drawBackground()
+        drawLeftMenu(img_exit, img_settings, img_rules)
+        drawBackButton()
+        drawRound('MOVING')
+        drawTextMoving()
         
     elif currentScreen == 'ATTACKING':
         drawBackground()
+        drawLeftMenu(img_exit, img_settings, img_rules)
+        drawBackButton()
+        drawRound('ATTACKING')
+        drawTextAttacking()
         
     elif currentScreen == 'CARDS-R':
         drawBackground()
+        drawLeftMenu(img_exit, img_settings, img_rules)
+        drawBackButton()
+        drawRound('CARDS')
+        drawTextCards()
+        cardhover()
         
     elif currentScreen == 'TROOPS-R':
         drawBackground()
+        drawLeftMenu(img_exit, img_settings, img_rules)
+        drawBackButton()
+        drawRound('TROOPS')
+        drawTextTroops()
         
     elif currentScreen == 'FAQ':
         drawBackground()
+        drawLeftMenu(img_exit, img_settings, img_rules)
+        drawBackButton()
+        drawRound('FAQ')
+        drawTextFaq()
+        hover1()
+        hover2()
+        hover3()
+        hover4()
+        hover5()
+        hover6()
+        hover7()
+        
+    elif currentScreen == 'OVERVIEW':
+        drawBackground()
+        drawLeftMenu(img_exit, img_settings, img_rules)
+        drawBackButton()
+        drawRound('OVERVIEW')
+        drawAllCards2()
+        
+        
+    elif currentScreen == 'FAQ1':
+        drawBackground()
+        drawLeftMenu(img_exit, img_settings, img_rules)
+        drawBackButton()
+        drawRound('FAQ1')
+        drawTextFaq1()
+        
+        
+    elif currentScreen == 'FAQ2':
+        drawBackground()
+        drawLeftMenu(img_exit, img_settings, img_rules)
+        drawBackButton()
+        drawRound('FAQ2')
+        drawTextFaq2()
+
+
+    elif currentScreen == 'FAQ3':
+        drawBackground()
+        drawLeftMenu(img_exit, img_settings, img_rules)
+        drawBackButton()
+        drawRound('FAQ3')
+        drawTextFaq3()
+
+
+    elif currentScreen == 'FAQ4':
+        drawBackground()
+        drawLeftMenu(img_exit, img_settings, img_rules)
+        drawBackButton()
+        drawRound('FAQ4')
+        drawTextFaq4()
+
+    elif currentScreen == 'FAQ5':
+        drawBackground()
+        drawLeftMenu(img_exit, img_settings, img_rules)
+        drawBackButton()
+        drawRound('FAQ5')
+        drawTextFaq5()
+
+    elif currentScreen == 'FAQ6':
+        drawBackground()
+        drawLeftMenu(img_exit, img_settings, img_rules)
+        drawBackButton()
+        drawRound('FAQ6')
+        drawTextFaq6()
+
+    elif currentScreen == 'FAQ7':
+        drawBackground()
+        drawLeftMenu(img_exit, img_settings, img_rules)
+        drawBackButton()
+        drawRound('FAQ7')
+        drawTextFaq7()
